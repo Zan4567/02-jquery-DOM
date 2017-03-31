@@ -16,11 +16,14 @@ function Article (opts) {
 
 Article.prototype.toHtml = function() {
   var $newArticle = $('article.template').clone();
+
   /* TODO: This cloned article is no longer a template,
   as it now has real data attached to it! We need to account
   for that before this current article gets rendered to our
   DOM. */
   // one line of code to remove the class that hides the template so that the articles will actually show
+
+  $newArticle.removeClass('template');
 
   if (!this.publishedOn) $newArticle.addClass('draft');
   $newArticle.data('category', this.category);
@@ -36,6 +39,11 @@ Article.prototype.toHtml = function() {
 
     // lots of $newArticle.find...  (look at jQuery $.find docs)
 
+    $newArticle.find('h1').html(this.title);
+    $newArticle.find('a').html(this.author);
+    $newArticle.find('a').attr('href', this.authorUrl);
+    $newArticle.find('time').attr('datetime', this.publishedOn);
+    $newArticle.find('.article-body').html(this.body);
     console.log($newArticle);
 
   // Display the date as a relative number of 'days ago'
