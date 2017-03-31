@@ -6,6 +6,12 @@ function Article (opts) {
   // TODO: Use the JS object passed in to complete this constructor function:
   // Save ALL the properties of `opts` into `this`
   // lots of this.someProperty = opts.property
+  this.title = opts.title;
+  this.category = opts.category;
+  this.author = opts.author;
+  this.authorUrl = opts.authorUrl;
+  this.publishedOn = opts.publishedOn;
+  this.body = opts.body;
 }
 
 Article.prototype.toHtml = function() {
@@ -38,6 +44,7 @@ Article.prototype.toHtml = function() {
   return $newArticle;
 };
 
+//function calls
 rawData.sort(function(a,b) {
   // REVIEW: Take a look at this sort method; This may be the first time we've seen it.
   return (new Date(b.publishedOn)) - (new Date(a.publishedOn));
